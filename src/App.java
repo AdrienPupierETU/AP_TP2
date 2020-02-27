@@ -42,6 +42,11 @@ public class App {
             }
         }
         System.out.println("Sur 1000 formule avec 10 variable et 20 clause géneré aleatoirement "+nbTrue+ " sont valide ce qui represente : "+(nbTrue/1000)*100+"%");
+
+        /*--------------------------Pile/Face-------------------------------------*/
+        PileFace pileFace = new PileFace();
+        pileFace.probaWin();
+        pileFace.init_chain();
     }
     private static String generateSat2String(int nbClause,int nbVariable){
         StringBuilder formule= new StringBuilder();
