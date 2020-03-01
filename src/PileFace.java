@@ -18,6 +18,8 @@ public class PileFace {
 
     public PileFace(){
         init_mat();
+        //Il y a deux etats de victoire le 3 et le 6
+        //Au 3 le joueur 1 gagne au 6 c'est le joueur 2 qui gagne
         transMat.get(0).set(1,.5);
         transMat.get(0).set(2,.5);
         transMat.get(1).set(2,.5);
@@ -125,17 +127,23 @@ public class PileFace {
         return prodMat;
     }
 
-    void init_chain(){
-        for(int i=0;i<3;i++){
+    void init_new_chain(){
+        for(int i=0;i<5;i++){
             matChain.add(new ArrayList<>());
             for(int y=0;y<3;y++){
                 matChain.get(i).add(0.0);
             }
         }
-        matChain.get(0).set(1,probaJ1);
-        matChain.get(0).set(2,probaJ2);
-        matChain.get(1).set(1,1.0);
-        matChain.get(2).set(2,1.0);
+        transMat.get(0).set(1,.5);
+        transMat.get(0).set(2,.5);
+        transMat.get(1).set(2,.5);
+        transMat.get(1).set(3,.5);
+        transMat.get(2).set(0,probaJ1);
+        transMat.get(2).set(4,1-probaJ1);
+        transMat.get(3).set(0,probaJ2);
+        transMat.get(3).set(2,1-probaJ2);
+        transMat.get(4).set(1,.5);
+        transMat.get(4).set(4,.5);
         affiche_mat(matChain);
     }
 }

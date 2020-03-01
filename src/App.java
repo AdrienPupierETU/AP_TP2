@@ -46,7 +46,7 @@ public class App {
         /*--------------------------Pile/Face-------------------------------------*/
         PileFace pileFace = new PileFace();
         pileFace.probaWin();
-        pileFace.init_chain();
+        pileFace.init_new_chain();
     }
     private static String generateSat2String(int nbClause,int nbVariable){
         StringBuilder formule= new StringBuilder();
