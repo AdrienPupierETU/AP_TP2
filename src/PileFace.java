@@ -17,7 +17,7 @@ public class PileFace {
     List<List<Double>> matChain = new ArrayList<>();
 
     public PileFace(){
-        init_mat();
+        init_mat(transMat, nb_vertices);
         //Il y a deux etats de victoire le 3 et le 6
         //Au 3 le joueur 1 gagne au 6 c'est le joueur 2 qui gagne
         transMat.get(0).set(1,.5);
@@ -38,11 +38,11 @@ public class PileFace {
         }
     }
 
-    public void init_mat(){
-        for(int i=0;i<nb_vertices;i++){
-            transMat.add(new ArrayList<>());
-            for(int y=0;y<nb_vertices;y++){
-                transMat.get(i).add(0.0);
+    public void init_mat(List<List<Double>> M, int NBvertices){
+        for(int i=0;i<NBvertices;i++){
+            M.add(new ArrayList<>());
+            for(int y=0;y<NBvertices;y++){
+                M.get(i).add(0.0);
             }
         }
     }
@@ -113,37 +113,43 @@ public class PileFace {
     }
 
     //Multiplie n fois la matrice M par elle meme
-    public List<List<Double>> prodMat(List<List<Double>> M, int n){
+    public void prodMat(int n ,List<List<Double>> M) {
         List<List<Double>> prodMat = new ArrayList<>();
-        prodMat.add(new ArrayList<>());
-        prodMat.add(new ArrayList<>());
+        init_mat(prodMat, 7);
 
-        for(int i = 0; i < n; i++){
-            prodMat.get(0).add(Math.pow(M.get(0).get(0),2) + M.get(0).get(1)*M.get(1).get(0));
-            prodMat.get(0).add((M.get(1).get(0)*M.get(1).get(0)) + (M.get(0).get(1)*M.get(1).get(1)));
-            prodMat.get(1).add((M.get(1).get(0)*M.get(0).get(0))+ (M.get(1).get(1)*M.get(1).get(0)));
-            prodMat.get(1).add(Math.pow(M.get(1).get(0),2) + Math.pow(M.get(1).get(1),2));
+
+        for (int nb_ite = 0; nb_ite < n; nb_ite++){
+            for (int i = 0; i < M.size(); i++) {
+                for (int j = 0; j < M.size(); j++) {
+                    for (int k = 0; k < M.size(); k++) {
+                        double proba = M.get(i).get(k) * M.get(k).get(j);
+                        prodMat.get(i).set(j, proba);
+                    }
+                }
+            }
         }
-        return prodMat;
     }
 
     void init_new_chain(){
-        for(int i=0;i<5;i++){
-            matChain.add(new ArrayList<>());
-            for(int y=0;y<3;y++){
-                matChain.get(i).add(0.0);
-            }
-        }
-        transMat.get(0).set(1,.5);
-        transMat.get(0).set(2,.5);
-        transMat.get(1).set(2,.5);
-        transMat.get(1).set(3,.5);
-        transMat.get(2).set(0,probaJ1);
-        transMat.get(2).set(4,1-probaJ1);
-        transMat.get(3).set(0,probaJ2);
-        transMat.get(3).set(2,1-probaJ2);
-        transMat.get(4).set(1,.5);
-        transMat.get(4).set(4,.5);
+        init_mat(matChain, 7);
+        matChain.get(0).set(1,.5);
+        matChain.get(0).set(2,.5);
+        matChain.get(1).set(2,.5);
+        matChain.get(1).set(4,.5);
+        matChain.get(2).set(3,.5);
+        matChain.get(2).set(5,.5);
+        matChain.get(3).set(0,1.0);
+        matChain.get(4).set(2,.5);
+        matChain.get(4).set(6,.5);
+        matChain.get(5).set(5,.5);
+        matChain.get(5).set(1,.5);
+        matChain.get(6).set(0,1.0);
+
+        affiche_mat(matChain);
+        System.out.println();
+        prodMat(N, matChain);
+
+        System.out.println("Matrice apres avoir itéréb");
         affiche_mat(matChain);
     }
 }

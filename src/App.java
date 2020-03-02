@@ -1,5 +1,5 @@
 
-import javafx.util.Pair;
+//import javafx.util.Pair;
 
 import java.lang.Math;
 import java.util.List;
@@ -25,7 +25,7 @@ public class App {
         System.out.println("Distance vole oiseau : "+Math.sqrt(Math.pow(4,2)+Math.pow(4,2)));
 
         /*--------------------------2SAT-------------------------------------*/
-        Sat2 sat = new Sat2("(1 | 2)&(2 |-3)&(-1|4)&(-4|-2)",20,4);
+        /*bSat2 sat = new Sat2("(1 | 2)&(2 |-3)&(-1|4)&(-4|-2)",20,4);
         Pair<Boolean, List<Integer>> result =sat.solveRandomWalk();
         if(result.getKey()){
             System.out.println("Formule satisfaisable Valuation  : "+result.getValue().toString());
@@ -42,7 +42,7 @@ public class App {
             }
         }
         System.out.println("Sur 1000 formule avec 10 variable et 20 clause géneré aleatoirement "+nbTrue+ " sont valide ce qui represente : "+(nbTrue/1000)*100+"%");
-
+        */
         /*--------------------------Pile/Face-------------------------------------*/
         PileFace pileFace = new PileFace();
         pileFace.probaWin();

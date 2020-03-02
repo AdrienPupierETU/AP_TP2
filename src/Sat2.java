@@ -1,4 +1,4 @@
-import javafx.util.Pair;
+//import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Sat2 {
             listeValuationVariable.add(-1); //Valuation falsifié pour toutes les variables
         }
     }
-
+    /*
     public Pair<Boolean,List<Integer>> solveRandomWalk(){
         Pair<Boolean, List<Integer>> result;
 
@@ -49,6 +49,7 @@ public class Sat2 {
         result=new Pair<>(false, listeValuationVariable);
         return result;
     }
+    */
     private Boolean isClauseVerified(List<Integer> clause){
         for(Integer var : clause){
             if(var >0){ //posifif
